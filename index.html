@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>من بابا لبنتي الحبيبة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6F4;
+    --paper:#FFFDFB;
+    --blush:#F6B8CC;
+    --rose:#E0678F;
+    --deep-rose:#B84B72;
+    --plum:#4A2438;
+    --plum-soft:#7A5468;
+    --gold:#D9A857;
+    --lavender:#E9DDF2;
+    --shadow-rose: rgba(216,101,143,0.25);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Cairo', sans-serif;
+    background:var(--cream);
+    color:var(--plum);
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ===== floating hearts background ===== */
+  .float-hearts{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
+  .heart{
+    position:absolute; bottom:-10%;
+    opacity:0.35;
+    animation:rise linear infinite;
+    color:var(--blush);
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) rotate(0deg); opacity:0;}
+    10%{opacity:0.5;}
+    90%{opacity:0.4;}
+    100%{transform:translateY(-115vh) rotate(25deg); opacity:0;}
+  }
+
+  /* ===== nav ===== */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; justify-content:center; gap:2.5rem;
+    padding:1.1rem 1rem;
+    background:rgba(255,246,244,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(216,101,143,0.15);
+  }
+  nav a{
+    color:var(--plum-soft);
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.98rem;
+    letter-spacing:0.3px;
+    position:relative;
+    padding:0.3rem 0.2rem;
+    transition:color 0.3s;
+  }
+  nav a::after{
+    content:'';
+    position:absolute; right:0; bottom:-2px;
+    width:0; height:2px;
+    background:var(--rose);
+    transition:width 0.35s ease;
+  }
+  nav a:hover{color:var(--deep-rose);}
+  nav a:hover::after{width:100%;}
+
+  /* ===== hero ===== */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:2rem 1.2rem;
+    z-index:1;
+  }
+  .eyebrow{
+    font-size:0.85rem;
+    letter-spacing:2px;
+    color:var(--deep-rose);
+    font-weight:700;
+    margin-bottom:1.2rem;
+    opacity:0;
+    animation:fadeUp 0.9s ease forwards 0.1s;
+  }
+  .hero h1{
+    font-family:'Rakkas', serif;
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    color:var(--plum);
+    line-height:1.3;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.3s;
+  }
+  .hero h1 span{color:var(--rose);}
+  .hero p{
+    max-width:560px;
+    margin-top:1.4rem;
+    font-size:1.1rem;
+    color:var(--plum-soft);
+    line-height:2;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.55s;
+  }
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(24px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .seal{
+    margin-top:2.4rem;
+    width:74px; height:74px;
+    border-radius:50%;
+    background:linear-gradient(145deg, var(--gold), #c98f3a);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 25px var(--shadow-rose);
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.8s, pulse 3s ease-in-out infinite 2s;
+  }
+  .seal svg{width:32px; height:32px; fill:var(--paper);}
+  @keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+  }
+
+  .scroll-cue{
+    margin-top:3.2rem;
+    font-size:0.8rem;
+    color:var(--plum-soft);
+    opacity:0;
+    animation:fadeUp 1s ease forwards 1s;
+    display:flex; flex-direction:column; align-items:center; gap:0.4rem;
+  }
+  .scroll-cue .line{
+    width:1px; height:38px;
+    background:linear-gradient(var(--rose), transparent);
+    animation:stretch 2s ease-in-out infinite;
+  }
+  @keyframes stretch{
+    0%,100%{opacity:0.3;}
+    50%{opacity:1;}
+  }
+
+  /* ===== section shared ===== */
+  section.block{
+    position:relative; z-index:1;
+    max-width:1100px;
+    margin:0 auto;
+    padding:6rem 1.4rem 4.5rem;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:3.2rem;
+  }
+  .section-head .label{
+    font-size:0.8rem;
+    letter-spacing:2px;
+    color:var(--deep-rose);
+    font-weight:700;
+  }
+  .section-head h2{
+    font-family:'Rakkas', serif;
+    font-size:clamp(2rem, 4.5vw, 3rem);
+    color:var(--plum);
+    margin-top:0.6rem;
+  }
+  .section-head .divider{
+    width:60px; height:3px;
+    background:var(--gold);
+    border-radius:3px;
+    margin:1.1rem auto 0;
+  }
+
+  .reveal{
+    opacity:0; transform:translateY(30px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ===== photos ===== */
+  .photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.8rem;
+  }
+  .photo-grid{
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+  }
+  .polaroid{
+    background:var(--paper);
+    padding:0.9rem;
+    border-radius:4px;
+    box-shadow:0 12px 28px rgba(74,36,56,0.12);
+    transform:rotate(var(--tilt, -2deg));
+    transition:transform 0.4s ease, box-shadow 0.4s ease;
+    position:relative;
+  }
+  .polaroid:nth-child(2n){--tilt:2deg;}
+  .polaroid:nth-child(3n){--tilt:-1deg;}
+  .polaroid:hover{
+    transform:rotate(0deg) translateY(-8px) scale(1.02);
+    box-shadow:0 20px 40px var(--shadow-rose);
+    z-index:2;
+  }
+  .polaroid .frame{
+    aspect-ratio:3/4;
+    border-radius:2px;
+    background:linear-gradient(135deg, var(--lavender), var(--blush));
+    display:flex; align-items:center; justify-content:center;
+    color:var(--paper);
+    overflow:hidden;
+    position:relative;
+  }
+  .polaroid .frame img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .tape{
+    position:absolute; top:-10px; right:50%; transform:translateX(50%) rotate(-3deg);
+    width:70px; height:22px;
+    background:rgba(230,196,150,0.55);
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    z-index:1;
+  }
+
+  /* ===== videos ===== */
+  .video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));
+    gap:1.6rem;
+  }
+  .video-card{
+    background:var(--paper);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 24px rgba(74,36,56,0.1);
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .video-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px var(--shadow-rose);
+  }
+  .video-thumb{
+    aspect-ratio:9/16;
+    background:linear-gradient(135deg, var(--rose), var(--deep-rose));
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .video-thumb video{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .video-info{padding:1rem 1.2rem 1.3rem;}
+  .video-info h3{font-family:'Rakkas', serif; font-size:1.15rem; color:var(--plum); margin-bottom:0.3rem;}
+  .video-info p{font-size:0.88rem; color:var(--plum-soft); line-height:1.7;}
+
+  /* ===== messages ===== */
+  .letters{
+    display:flex; flex-direction:column; gap:1.8rem;
+  }
+  .letter{
+    background:var(--paper);
+    border-radius:14px;
+    padding:2rem 2.2rem;
+    box-shadow:0 10px 26px rgba(74,36,56,0.1);
+    border-right:4px solid var(--rose);
+    position:relative;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .letter:hover{transform:translateY(-4px); box-shadow:0 16px 34px var(--shadow-rose);}
+  .letter .quote-mark{
+    position:absolute; top:1rem; left:1.4rem;
+    font-family:'Rakkas', serif;
+    font-size:2.8rem;
+    color:var(--blush);
+    line-height:1;
+    opacity:0.8;
+  }
+  .letter p{
+    font-size:1.05rem;
+    line-height:2.1;
+    color:var(--plum);
+    margin-bottom:1rem;
+  }
+  .letter .sign{
+    font-family:'Rakkas', serif;
+    color:var(--deep-rose);
+    font-size:1.15rem;
+  }
+
+  .letter.special{
+    background:linear-gradient(135deg, #fff, var(--lavender));
+    border-right-color:var(--gold);
+  }
+
+  footer{
+    text-align:center;
+    padding:3.5rem 1rem 3rem;
+    color:var(--plum-soft);
+    font-size:0.9rem;
+    position:relative; z-index:1;
+  }
+  footer .footer-heart{color:var(--rose); font-size:1.2rem;}
+</style>
+</head>
+<body>
+
+<div class="float-hearts" id="floatHearts"></div>
+
+<nav>
+  <a href="#photos">الصور</a>
+  <a href="#videos">الفيديوهات</a>
+  <a href="#messages">رسائل بابا</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">هدية خاصة جداً</div>
+  <h1>من بابا<br><span> لبنتي الحبيبة سلمي</span></h1>
+  <p>كل صورة فيها ذكرى، وكل فيديو فيه لحظة، وكل كلمة هنا حسيتها قبل ما اكتبها.
+  ده مكانك الصغير يا حياتي، فيه كل حاجة بحبك فيها.</p>
+  <div class="seal">
+    <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.1 2.4 5 5.8 5c2 0 3.4 1.1 4.2 2.4C10.8 6.1 12.2 5 14.2 5c3.4 0 5.3 3.1 3.8 6.7C19.5 16.4 12 21 12 21z"/></svg>
+  </div>
+  <div class="scroll-cue">
+    <span>انزلي واكتشفي</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<section class="block" id="photos">
+  <div class="section-head reveal">
+    <div class="label">ذكريات محفوظة</div>
+    <h2>لحظات من عمرنا</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="photo-grid" id="photoGrid">
+    <div class="polaroid reveal">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (9).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.1s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (8).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.2s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (7).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.3s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (6).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.4s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (5).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (4).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (3).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (1).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (10).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (11).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (12).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (13).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (14).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (15).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (16).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (17).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (18).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (19).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (20).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (2).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (21).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (22).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (23).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (24).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (25).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (26).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="سلمي/1 (27).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (1).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (2).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (3).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (4).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (5).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (6).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (7).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (8).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (9).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (10).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (11).jpeg" alt=""></div>
+    </div>
+    <div class="polaroid reveal" style="transition-delay:0.5s">
+      <div class="tape"></div>
+      <div class="frame"><img src="New folder/2 (12).jpeg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="videos">
+  <div class="section-head reveal">
+    <div class="label">تسجيلات من القلب</div>
+    <h2>لحظات بتتحرك</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="video-grid">
+    <div class="video-card reveal">
+      <div class="video-thumb"><video src="سلمي/1 (1).mp4" controls></video></div>
+      
+    </div>
+    <div class="video-card reveal" style="transition-delay:0.1s">
+      <div class="video-thumb"><video src="سلمي/1 (2).mp4" controls></video></div>
+      <div class="video-info">
+      
+    </div>
+   
+  </div>
+</section>
+
+<section class="block" id="messages">
+  <div class="section-head reveal">
+    <div class="label">كلمات من بابا</div>
+    <h2>رسالة ليكِ</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="letters">
+    <div class="letter special reveal">
+      <div class="quote-mark">"</div>
+بنتي حبيبتي،
+ربنا يعلم إنتِ غالية عندي قد إيه، وقد إيه نفسي أشوفك دايمًا بخير وفرحانة.
+ربنا يحفظك ويبعد عنك أي وجع، ويكتبلك في كل خطوة خير.
+إنتِ نعمة كبيرة في حياتي، وربنا يديمك فيها. 🤍
+      <div class="sign">بابا اللي بيحبك أوي</div>
+    </div>
+  
+  </div>
+</section>
+
+<footer>
+  بحبك يا حياتي أكتر من أي كلمة تقدر توصف <span class="footer-heart">♥</span>
+</footer>
+
+<script>
+  // floating hearts background
+  const container = document.getElementById('floatHearts');
+  const heartPaths = 'M12 21s-7.5-4.6-10-9.3C.5 8.1 2.4 5 5.8 5c2 0 3.4 1.1 4.2 2.4C10.8 6.1 12.2 5 14.2 5c3.4 0 5.3 3.1 3.8 6.7C19.5 16.4 12 21 12 21z';
+  const count = window.innerWidth < 600 ? 8 : 14;
+  for(let i=0;i<count;i++){
+    const s = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    s.setAttribute('viewBox','0 0 24 24');
+    s.classList.add('heart');
+    const size = 14 + Math.random()*20;
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    s.style.left = (Math.random()*100)+'%';
+    s.style.animationDuration = (10 + Math.random()*12)+'s';
+    s.style.animationDelay = (Math.random()*10)+'s';
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d', heartPaths);
+    p.setAttribute('fill','currentColor');
+    s.appendChild(p);
+    container.appendChild(s);
+  }
+
+  // scroll reveal
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
